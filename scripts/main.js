@@ -1,9 +1,10 @@
-let choices = ['rock', 'paper', 'scissors'];
-
+// This function randomly selects rock, paper, or scissors for the computer player
 function computerPlay() {
+    let choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
+// This function determines if the user or computer wins the round of rock, paper, scissors
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == 'rock') {
         if (computerSelection == 'rock') {
@@ -32,6 +33,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+// This function prompts the user to play five rounds of rock, paper, scissors
 function game() {
     let userWins = 0;
     let computerWins = 0;
