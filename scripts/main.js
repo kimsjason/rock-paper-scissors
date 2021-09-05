@@ -30,8 +30,35 @@ function playRound(playerSelection, computerSelection) {
             return 'You win! Scissors beats paper.';
         }
     }
-
 }
-const playerSelection = prompt('Make your move (rock, paper, or scissors): ');
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+
+function game() {
+    let userWins, computerWins = 0;
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt('Make your move (rock, paper, or scissors): ').toLowerCase();
+        const computerSelection = computerPlay();
+        let round = playRound(playerSelection, computerSelection);
+
+        console.log('Player Selection: ' + playerSelection);
+        console.log('Computer Selection: ' + computerSelection);
+        console.log(round)
+        
+        if (round.includes('lose')) {
+            computerWins+=1;
+        } else if (round.includes('win')) {
+            userWins+=1;
+        }
+    }
+
+    if (userWins > computerWins) {
+        return 'You win the game!';
+    } else if (userWins < computerWins) {
+        return 'You lose the game!';
+    } else {
+        return 'You tied the game!';
+    }
+}
+
+
+
+console.log(game())
