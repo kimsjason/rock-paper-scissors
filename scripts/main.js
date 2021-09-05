@@ -33,7 +33,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let userWins, computerWins = 0;
+    let userWins = 0;
+    let computerWins = 0;
     for (let i = 0; i < 5; i++) {
         const playerSelection = prompt('Make your move (rock, paper, or scissors): ').toLowerCase();
         const computerSelection = computerPlay();
@@ -42,7 +43,7 @@ function game() {
         console.log('Player Selection: ' + playerSelection);
         console.log('Computer Selection: ' + computerSelection);
         console.log(round)
-        
+
         if (round.includes('lose')) {
             computerWins+=1;
         } else if (round.includes('win')) {
