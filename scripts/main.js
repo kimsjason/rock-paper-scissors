@@ -46,25 +46,34 @@ function game() {
         playerSelection = 'rock';
         const computerSelection = computerPlay();
         let round = playRound(playerSelection, computerSelection);
-        console.log('Player Selection: ' + playerSelection);
-        console.log('Computer Selection: ' + computerSelection);
-        console.log(round)
+        let p = document.createElement('p');
+        p.textContent = `Player Selection: ${playerSelection} \r
+                            Computer Selection: ${computerSelection} <br>
+                            ${round}`;
+        let results = document.querySelector('#results');
+        results.appendChild(p);
     });
     paper.addEventListener('click', () => {
         playerSelection = 'paper';
         const computerSelection = computerPlay();
         let round = playRound(playerSelection, computerSelection);
-        console.log('Player Selection: ' + playerSelection);
-        console.log('Computer Selection: ' + computerSelection);
-        console.log(round)
+        let p = document.createElement('p');
+        p.textContent = `Player Selection: ${playerSelection} \n
+                            Computer Selection: ${computerSelection} \n
+                            ${round}`;
+        let results = document.querySelector('#results');
+        results.appendChild(p);
     });
     scissors.addEventListener('click', () => {
         playerSelection = 'scissors';
         const computerSelection = computerPlay();
         let round = playRound(playerSelection, computerSelection);
-        console.log('Player Selection: ' + playerSelection);
-        console.log('Computer Selection: ' + computerSelection);
-        console.log(round)
+        let p = document.createElement('p');
+        p.textContent = `Player Selection: ${playerSelection} \n
+                            Computer Selection: ${computerSelection} \n
+                            ${round}`;
+        let results = document.querySelector('#results');
+        results.appendChild(p);
     });
 
 
