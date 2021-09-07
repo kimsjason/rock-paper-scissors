@@ -68,6 +68,16 @@ function checkWinner (userWins, computerWins) {
     } else return;
 }
 
+function clickFunction(playerSelection) {
+    const computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    let wins = addPoint(round, userWins, computerWins);
+    userWins = wins.userWins;
+    computerWins = wins.computerWins;
+    checkWinner(userWins, computerWins);
+    displayResults(playerSelection, computerSelection, round);
+}
+
 let userWins = 0;
 let computerWins = 0;
 
@@ -78,31 +88,13 @@ let results = document.querySelector('#results');
 
 rock.addEventListener('click', () => {
     const playerSelection = 'rock';
-    const computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    let wins = addPoint(round, userWins, computerWins);
-    userWins = wins.userWins;
-    computerWins = wins.computerWins;
-    checkWinner(userWins, computerWins);
-    displayResults(playerSelection, computerSelection, round);
+    clickFunction(playerSelection);
 });
 paper.addEventListener('click', () => {
     const playerSelection = 'paper';
-    const computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    displayResults(playerSelection, computerSelection, round);
-    let wins = addPoint(round, userWins, computerWins);
-    userWins = wins.userWins;
-    computerWins = wins.computerWins;
-    checkWinner(userWins, computerWins);
+    clickFunction(playerSelection);
 });
 scissors.addEventListener('click', () => {
     const playerSelection = 'scissors';
-    const computerSelection = computerPlay();
-    let round = playRound(playerSelection, computerSelection);
-    displayResults(playerSelection, computerSelection, round);
-    let wins = addPoint(round, userWins, computerWins);
-    userWins = wins.userWins;
-    computerWins = wins.computerWins;
-    checkWinner(userWins, computerWins);
+    clickFunction(playerSelection);
 });
