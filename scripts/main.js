@@ -34,12 +34,16 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function displayResults(playerSelection, computerSelection, round) {
-    let p = document.createElement('p');
-    p.textContent = `Player Selection: ${playerSelection}
-                        Computer Selection: ${computerSelection}
-                        ${round}`;
-    let results = document.querySelector('#results');
-    results.appendChild(p);
+    playerSelectionParagraph = document.querySelector('#player-selection');
+    playerScoreParagraph = document.querySelector('#player-score');
+    computerSelectionParagraph = document.querySelector('#computer-selection');
+    computerScoreParagraph = document.querySelector('#computer-score');
+    outcomeParagraph = document.querySelector('#outcome');
+    playerSelectionParagraph.textContent = `Your Selection: ${playerSelection}`;
+    playerScoreParagraph.textContent = `Your Score: ${userWins}`;
+    computerSelectionParagraph.textContent = `Computer Selection: ${computerSelection}`;
+    computerScoreParagraph.textContent = `Computer Score: ${computerWins}`;
+    outcomeParagraph.textContent = round;
 }
 
 function addPoint(round, userWins, computerWins) {
@@ -76,11 +80,11 @@ rock.addEventListener('click', () => {
     const playerSelection = 'rock';
     const computerSelection = computerPlay();
     let round = playRound(playerSelection, computerSelection);
-    displayResults(playerSelection, computerSelection, round);
     let wins = addPoint(round, userWins, computerWins);
     userWins = wins.userWins;
     computerWins = wins.computerWins;
     checkWinner(userWins, computerWins);
+    displayResults(playerSelection, computerSelection, round);
 });
 paper.addEventListener('click', () => {
     const playerSelection = 'paper';
