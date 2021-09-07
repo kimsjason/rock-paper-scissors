@@ -33,60 +33,72 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// This function prompts the user to play five rounds of rock, paper, scissors
-function game() {
-    let userWins = 0;
-    let computerWins = 0;
-
-    let rock = document.querySelector('#rock');
-    let paper = document.querySelector('#paper');
-    let scissors = document.querySelector('#scissors');
-    let playerSelection;
-    rock.addEventListener('click', () => {
-        playerSelection = 'rock';
-        const computerSelection = computerPlay();
-        let round = playRound(playerSelection, computerSelection);
-        let p = document.createElement('p');
-        p.textContent = `Player Selection: ${playerSelection} \r
-                            Computer Selection: ${computerSelection} <br>
-                            ${round}`;
-        let results = document.querySelector('#results');
-        results.appendChild(p);
-    });
-    paper.addEventListener('click', () => {
-        playerSelection = 'paper';
-        const computerSelection = computerPlay();
-        let round = playRound(playerSelection, computerSelection);
-        let p = document.createElement('p');
-        p.textContent = `Player Selection: ${playerSelection} \n
-                            Computer Selection: ${computerSelection} \n
-                            ${round}`;
-        let results = document.querySelector('#results');
-        results.appendChild(p);
-    });
-    scissors.addEventListener('click', () => {
-        playerSelection = 'scissors';
-        const computerSelection = computerPlay();
-        let round = playRound(playerSelection, computerSelection);
-        let p = document.createElement('p');
-        p.textContent = `Player Selection: ${playerSelection} \n
-                            Computer Selection: ${computerSelection} \n
-                            ${round}`;
-        let results = document.querySelector('#results');
-        results.appendChild(p);
-    });
-
-
-    
-    if (userWins > computerWins) {
-        return 'You win the game!';
-    } else if (userWins < computerWins) {
-        return 'You lose the game!';
-    } else {
-        return 'You tied the game!';
-    }
+function displayResults(playerSelection, computerSelection, round) {
+    let p = document.createElement('p');
+    p.textContent = `Player Selection: ${playerSelection}
+                        Computer Selection: ${computerSelection}
+                        ${round}`;
+    let results = document.querySelector('#results');
+    results.appendChild(p);
 }
 
+function addPoint(round, userWins, computerWins) {
+    if (round.includes('lose')) {
+        computerWins+=1;
+        console.log('Computer Wins: ' + computerWins);
+    } else if (round.includes('win')) {
+        userWins+=1;
+        console.log('User Wins: ' + userWins);
+    }
+    return {userWins, computerWins};
+}
 
+function checkWinner (userWins, computerWins) {
+    let h2 = document.createElement('h2');
+    if (userWins == 5) {
+        h2.textContent = 'You win the game!';
+        results.appendChild(h2);
+    } else if (computerWins == 5) {
+        h2.textContent = 'The computer wins the game!';
+        results.appendChild(h2);
+    } else return;
+}
 
-console.log(game())
+let userWins = 0;
+let computerWins = 0;
+
+let rock = document.querySelector('#rock');
+let paper = document.querySelector('#paper');
+let scissors = document.querySelector('#scissors');
+let results = document.querySelector('#results');
+
+rock.addEventListener('click', () => {
+    const playerSelection = 'rock';
+    const computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    displayResults(playerSelection, computerSelection, round);
+    let wins = addPoint(round, userWins, computerWins);
+    userWins = wins.userWins;
+    computerWins = wins.computerWins;
+    checkWinner(userWins, computerWins);
+});
+paper.addEventListener('click', () => {
+    const playerSelection = 'paper';
+    const computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    displayResults(playerSelection, computerSelection, round);
+    let wins = addPoint(round, userWins, computerWins);
+    userWins = wins.userWins;
+    computerWins = wins.computerWins;
+    checkWinner(userWins, computerWins);
+});
+scissors.addEventListener('click', () => {
+    const playerSelection = 'scissors';
+    const computerSelection = computerPlay();
+    let round = playRound(playerSelection, computerSelection);
+    displayResults(playerSelection, computerSelection, round);
+    let wins = addPoint(round, userWins, computerWins);
+    userWins = wins.userWins;
+    computerWins = wins.computerWins;
+    checkWinner(userWins, computerWins);
+});
